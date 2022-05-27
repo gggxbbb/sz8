@@ -23,12 +23,13 @@ var (
 
 func encode(s string) string {
 
-	var iptBytes = []byte(s)
+	var iptBytes = []rune(s)
 	var iptBin string
 	for _, v := range iptBytes {
-		bin := fmt.Sprintf("%08b", v)
+		bin := fmt.Sprintf("%016b", v)
 		iptBin += bin
 	}
+	fmt.Println(iptBin)
 	var spiltBin = strings.Split(iptBin, "")
 	var extraChar = depth - len(spiltBin)%depth
 	for i := 0; i < extraChar; i++ {
@@ -61,12 +62,12 @@ func decode(s string) string {
 	}
 	var spiltBin = strings.Split(bin, "")
 	var realBin = spiltBin[:len(spiltBin)-extraChar]
-	var iptBytes []byte
-	for i := 0; i < len(realBin); i += 8 {
-		var tmp = realBin[i : i+8]
+	var iptBytes []rune
+	for i := 0; i < len(realBin); i += 16 {
+		var tmp = realBin[i : i+16]
 		var tmpStr = strings.Join(tmp, "")
 		var index, _ = strconv.ParseUint(tmpStr, 2, 64)
-		iptBytes = append(iptBytes, byte(index))
+		iptBytes = append(iptBytes, rune(index))
 	}
 	return string(iptBytes)
 }
