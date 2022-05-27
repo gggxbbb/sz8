@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-	var ipt = "ab"
+	var ipt = "江苏省常熟中学和江苏省常熟市中学不是同一个学校"
 
 	fmt.Println(ipt)
 

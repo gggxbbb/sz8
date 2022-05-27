@@ -7,6 +7,7 @@ import (
 )
 
 var (
+	depth     = 3
 	charPools = []string{"常", "熟", "市", "中", "学", "我", "爱", "你"}
 	indexMap  = map[string]int{
 		"常": 0,
@@ -29,14 +30,14 @@ func encode(s string) string {
 		iptBin += bin
 	}
 	var spiltBin = strings.Split(iptBin, "")
-	var extraChar = 3 - len(spiltBin)%3
+	var extraChar = depth - len(spiltBin)%depth
 	for i := 0; i < extraChar; i++ {
 		spiltBin = append(spiltBin, "0")
 	}
 
 	var opt string
-	for i := 0; i < len(spiltBin); i += 3 {
-		var tmp = spiltBin[i : i+3]
+	for i := 0; i < len(spiltBin); i += depth {
+		var tmp = spiltBin[i : i+depth]
 		var tmpStr = strings.Join(tmp, "")
 		var index, _ = strconv.ParseUint(tmpStr, 2, 64)
 		opt += charPools[index]
