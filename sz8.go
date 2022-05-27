@@ -29,9 +29,11 @@ func encode(s string) string {
 		bin := fmt.Sprintf("%016b", v)
 		iptBin += bin
 	}
-	fmt.Println(iptBin)
 	var spiltBin = strings.Split(iptBin, "")
 	var extraChar = depth - len(spiltBin)%depth
+	if extraChar == depth {
+		extraChar = 0
+	}
 	for i := 0; i < extraChar; i++ {
 		spiltBin = append(spiltBin, "0")
 	}
