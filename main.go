@@ -6,7 +6,7 @@ import (
 
 func main() {
 
-	var ipt = "一起欣赏阿Q正传"
+	var ipt = "ab"
 
 	fmt.Println(ipt)
 
